@@ -3,7 +3,7 @@ const router = express.Router();
 const africasTalkingHelper = require('./africasTalkingHelper');
 const fs = require('fs');
 
-const BLOCK_REASONS_FILE = 'block_reasons.json';
+// const BLOCK_REASONS_FILE = 'block_reasons.json';
 
 router.post('/', async (req, res) => {
   const { reason, msisdn } = req.body;
@@ -18,8 +18,8 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ code: 5001, message: 'Invalid msisdn format.' });
   }
 
-  // Save to JSON file
-  saveReasonToFile(msisdn, reason);
+  // // Save to JSON file
+  // saveReasonToFile(msisdn, reason);
 
   try {
       const formattedMsisdn = formatMsisdn(msisdn);
@@ -44,14 +44,14 @@ router.post('/', async (req, res) => {
 //   fs.writeFileSync(BLOCK_REASONS_FILE, JSON.stringify(blockReasons));
 // }
 
-function loadBlockReasons() {
-  try {
-    const data = fs.readFileSync(BLOCK_REASONS_FILE);
-    return JSON.parse(data);
-  } catch (error) {
-    return {};
-  }
-}
+// function loadBlockReasons() {
+//   try {
+//     const data = fs.readFileSync(BLOCK_REASONS_FILE);
+//     return JSON.parse(data);
+//   } catch (error) {
+//     return {};
+//   }
+// }
 
 function isValidMsisdn(msisdn) {
   const msisdnRegex = /^\+254\d{9}$/;
