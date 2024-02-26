@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
 
       await africasTalkingHelper.sendSMS(formattedMsisdn, `Your transaction block request has been received. For Reason: ${reason}`);
 
-      res.status(200).json({ message: 'Request to block transactions received.' });
+      res.status(200).json({ code: 5000, message: 'Request to block transactions received. SMS Sent' });
       console.log(formattedMsisdn, reason);
   } catch (error) {
       console.error('Error sending SMS:', error);
