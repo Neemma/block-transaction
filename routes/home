@@ -37,12 +37,12 @@ router.post('/', async (req, res) => {
 });
 
 
-function saveReasonToFile(msisdn, reason) {
-  let blockReasons = loadBlockReasons();
-  blockReasons[msisdn] = reason;
+// function saveReasonToFile(msisdn, reason) {
+//   let blockReasons = loadBlockReasons();
+//   blockReasons[msisdn] = reason;
 
-  fs.writeFileSync(BLOCK_REASONS_FILE, JSON.stringify(blockReasons));
-}
+//   fs.writeFileSync(BLOCK_REASONS_FILE, JSON.stringify(blockReasons));
+// }
 
 function loadBlockReasons() {
   try {
