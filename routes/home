@@ -8,6 +8,11 @@ const BLOCK_REASONS_FILE = 'block_reasons.json';
 router.post('/', async (req, res) => {
   const { reason, msisdn } = req.body;
 
+  
+  if (!isValidPayload(req.body)) {
+    return res.status(400).json({ code: 5001, message: 'Invalid request payload. Expected keys: reason, msisdn.' });
+  }
+
   // Validate msisdn format
   if (!isValidMsisdn(msisdn)) {
       return res.status(400).json({ code: 5001, message: 'Invalid msisdn format.' });
@@ -56,5 +61,10 @@ function isValidMsisdn(msisdn) {
 function formatMsisdn(msisdn) {
   return msisdn.startsWith('+') ? msisdn : `+${msisdn}`;
 }
+
+function isValidPayload(payload) {
+  return 'reason' in payload && 'msisdn' in payload;
+}
+
 
 module.exports = router;
